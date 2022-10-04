@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from "react";
+import { nanoid } from "nanoid";
 import "./App.css"
 import Header from "./Header";
 import ContactList from "./ContactList";
@@ -9,8 +10,19 @@ const App =() =>{
   const[contacts,setContacts]=useState([]);
 const addContactHandler = (contact) =>{
   console.log(contact);
-  setContacts([...contacts, contact]);
+  setContacts([...contacts, {id:nanoid(),...contacts}]);
 };
+const removeContactHandler = (id) =>{
+  const newContactList=contacts.filter((contact)=>{
+ return contact.id !== id;
+  });
+  setContacts(newContactList);
+}
+
+useEffect(()=>{
+ const retriveContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+ if(retriveContacts) setContacts(retriveContacts);
+},[]);
 useEffect(()=>{
   localStorage.setItem(LOCAL_STORAGE_KEY,JSON.stringify(contacts))
 
@@ -18,7 +30,7 @@ useEffect(()=>{
   return (
     <div className="ui container">
       < Header/>
-      < ContactList contacts={contacts}/>
+      < ContactList contacts={contacts} getContactId={removeContactHandler}/>
       < AddContact addContactHandler = {addContactHandler}/>
     </div>
     );
