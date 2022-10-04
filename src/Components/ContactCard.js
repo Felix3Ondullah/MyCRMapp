@@ -1,5 +1,5 @@
 import React from "react";
-import user from "../Components/images/man.png";
+import user from "../Components/Images/man.png";
 
 function ContactCard(props) {
   const { name, email, number } = props.contact;
@@ -13,7 +13,7 @@ function ContactCard(props) {
       </div>
       <i
         className="trash alternate outline icon"
-        style={{ color: "red", marginTop: "7px" }}
+        style={{color: "red", marginTop: "5px" }}
       ></i>
     </div>
   );
