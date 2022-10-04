@@ -2,7 +2,7 @@ import React from "react";
 import user from "../Components/Images/man.png";
 
 function ContactCard(props) {
-  const { name, email, number } = props.contact;
+  const { id, name, email, number } = props.contact;
   return (
     <div className="item">
       <img className="ui avatar image" src={user} alt="user" />
@@ -14,6 +14,7 @@ function ContactCard(props) {
       <i
         className="trash alternate outline icon"
         style={{color: "red", marginTop: "5px" }}
+        onClick ={()=>props.clickHandler(id)}
       ></i>
     </div>
   );
