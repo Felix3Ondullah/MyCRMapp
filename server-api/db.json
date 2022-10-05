@@ -1,26 +1,34 @@
 {
-    "contacts":[
-
-        {
-            "id": "_PFlZnWUrwkttvIdHXOAG",
-            "name": "Felix Ondullah",
-            "email": "felixondullaaah@gmail.com",
-            "number": "0714225569"
-        },
-        {
-            "id": "1c98gOUy4sg8po5Mcde9r",
-            "name": "Ellvis Gatukui",
-            "email": "elvisgatukui@gmail.com",
-            "number": "0714225500"
-        },
-        {
-            "id": "FBCfSmsSflkMemE8cIrWC",
-            "name": "Rosland Andisi",
-            "email": "roselandisi@gmail.com",
-            "number": "0714225555"
-        }
-        
-        
-    ]
-
+  "contacts": [
+    {
+      "id": "inU3iAA4xFd_ZJRUqca0e",
+      "name": "Felix Ondullah",
+      "email": "felixondullaaah@gmail.com",
+      "number": "0714225569"
+    },
+    {
+      "id": "9FpUtLYeOgN7ICZR9EL4W",
+      "name": "Rosalnd Andisi",
+      "email": "felixondullaaah@gmail.com",
+      "number": "0714225569"
+    },
+    {
+      "id": "m_u8nEFG9GGlYEbpPUqWF",
+      "name": "Felicity Okoth",
+      "email": "felixondullaaah@gmail.com",
+      "number": "0714225569"
+    },
+    {
+      "id": "rZbDHlv7-TcqAMZiJEzhk",
+      "name": "Fiona Okoth",
+      "email": "felixondullaaah@gmail.com",
+      "number": "0714225565"
+    },
+    {
+      "id": "clGg9IT9Gkc_4kdrwPfdz",
+      "name": "Sam Kwendo",
+      "email": "samkwendo@yaaho.com",
+      "number": "0714225569"
+    }
+  ]
 }

@@ -77,7 +77,7 @@ const App = () => {
       <Header />
       <AddContact addContactHandler={addContactHandler} />
       <ContactList
-        contacts={contacts}
+        contacts={ searchTerm.length <1 ? contacts : searchResults }
         getContactId={removeContactHandler}
         term={searchTerm}
         searchKeyword={searchHandler}

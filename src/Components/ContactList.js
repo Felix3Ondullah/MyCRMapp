@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import ContactCard from "./ContactCard";
 
 const ContactList = (props) => {
@@ -23,14 +23,13 @@ const ContactList = (props) => {
     props.searchKeyword(inputElement.current.value);
   };
 
-
   return (
     <div class="main">
       <h3> Contact list </h3>
       <div className="ui search">
         <div className="ui icon input">
           <input
-           ref = {inputElement}
+            ref={inputElement}
             type="text"
             placeholder="Search Contacts"
             className="prompt"
@@ -40,7 +39,12 @@ const ContactList = (props) => {
           <i className="search icon"></i>
         </div>
       </div>
-      <div className="ui celled list"> {renderContactList}</div>
+      <div className="ui celled list">
+        {" "}
+        {renderContactList.length > 0
+          ? renderContactList
+          : "No Contact Availabe"}
+      </div>
     </div>
   );
 };
