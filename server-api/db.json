@@ -1,0 +1,26 @@
+{
+    "contacts":[
+
+        {
+            "id": "_PFlZnWUrwkttvIdHXOAG",
+            "name": "Felix Ondullah",
+            "email": "felixondullaaah@gmail.com",
+            "number": "0714225569"
+        },
+        {
+            "id": "1c98gOUy4sg8po5Mcde9r",
+            "name": "Ellvis Gatukui",
+            "email": "elvisgatukui@gmail.com",
+            "number": "0714225500"
+        },
+        {
+            "id": "FBCfSmsSflkMemE8cIrWC",
+            "name": "Rosland Andisi",
+            "email": "roselandisi@gmail.com",
+            "number": "0714225555"
+        }
+        
+        
+    ]
+
+}
