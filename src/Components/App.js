@@ -5,7 +5,7 @@ import Header from "./Header";
 import ContactList from "./ContactList";
 import AddContact from "./AddContact";
 import api from "../api/contacts";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 const App = () => {
   const LOCAL_STORAGE_KEY = "contacts";
@@ -18,9 +18,17 @@ const retrieveContacts = async() => {
 };
 
 
-  const addContactHandler = (contact) => {
+  const addContactHandler = async(contact) => {
     console.log(contact);
-    setContacts([...contacts, { id: nanoid(), ...contact }]);
+    const request = {
+      id:nanoid(),
+      ...contact
+    };
+
+
+   const response =  await api.post ("./contacts" ,request)
+   console.log(response);
+    setContacts([...contacts, response.data]);
   };
 
   const removeContactHandler = (id) => {
@@ -33,15 +41,17 @@ const retrieveContacts = async() => {
   useEffect(() => {
     // const retriveContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     // if (retriveContacts) setContacts(retriveContacts);
-    const getAllContacts =async () => {
+    const getAllContacts = async () => {
       const allContacts = await retrieveContacts();
+      console.log(allContacts)
       if(allContacts) setContacts (allContacts);
     }
     getAllContacts();
+    console.log(getAllContacts)
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
+    // localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
   }, [contacts]);
 
   return (
