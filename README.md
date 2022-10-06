@@ -3,10 +3,10 @@
 Customer Relatonship Manager app
 
 # Project Description
-This app will enable the business to input customer details and store them in their database. It will have a search feature where they can access information of their customer in the database. It will also allow business to add and delete customer details.
+This app will enable the business to input customer details and store them.  It will have a search feature where they can access information of their customer in the stored in the server. It will also allow business to add and delete customer details.The contacts that appear on the contactlist are stored in this JSON file and if we add a contact from app then it will also be added in the JSON file and edit button will work the same.
 
 # Technology Used
-This app will will be created React. I will import semantic UI in the html file in our app. This will be used for styling the app. I will create a db.json where I will put my resources that will act as my server. I will requets this data/resources using axios. This will return the data of the format JSON.
+This app will will be created React Js. I will import semantic UI in the html file in our app. This will be used for styling the app. I will create a db.json where I will put my resources that will act as my server. I will requets this data/resources using axios. This will return the data of the format JSON.
 
 # Project live link
 
