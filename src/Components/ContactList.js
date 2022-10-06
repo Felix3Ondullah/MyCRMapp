@@ -27,14 +27,14 @@ function ContactList(props) {
 
   return (
     <div className="main">
-      <h2>
+      <h3>
         Contact List
         <Link to="/add">
           <button className="ui primary button right floated">
             Add Contact
           </button>
         </Link>
-      </h2>
+      </h3>
       <div className="ui search">
         <div className="ui icon input">
           <input
