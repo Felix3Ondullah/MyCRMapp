@@ -24,7 +24,7 @@ function EditContact(props) {
 
   return (
     <div className="ui main">
-      <h2>Edit Contact</h2>
+      <h3>Edit Contact</h3>
       <form className="ui form" onSubmit={update}>
         <div className="field">
           <label>Customer's Name</label>
