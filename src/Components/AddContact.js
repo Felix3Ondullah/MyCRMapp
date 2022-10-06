@@ -1,62 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+//replacing usehistory with usenavigate
 
-class AddContact extends React.Component {
-  state = {
-    name: "",
-    email: "",
-    number: "",
-  };
-  add =(e)=>{
+function AddContact(props) {
+  const navigate = useNavigate();
+  const [User, setUser] = useState({ name: "", email: "", number: "" });
+
+  let add = (e) => {
     e.preventDefault();
-    if(this.state.name === "" && this.state.email ==="" )
-{
-    alert ("Fill all the field please!")
-    return
-}  
-this.props.addContactHandler(this.state)
-this.setState({name:"", email:"", number:""});
-// console.log(this.state);
-}
-  render(){
+    if (User.name === "" || User.email === "" || User.number === "") {
+      alert("Fill all the field please!!");
+      return;
+    }
+
+    props.addContactHandler(User);
+    setUser({ name: "", email: "", number: "" });
+    //console.log(props);
+    navigate("/");
+  };
+
   return (
     <div className="ui main">
-      <h3>Add Contact</h3>
-      <form className="ui form" onSubmit={this.add}>
+      <h2>Add Contact</h2>
+      <form className="ui form" onSubmit={add}>
         <div className="field">
-          <label> Customer's Name</label>
+          <label>Customer's Name</label>
           <input
             type="text"
-            name="name"
+            name="Name"
             placeholder="Name"
-            value={this.state.name}
-            onChange={(e) => this.setState({ name: e.target.value })}
+            value={User.name}
+            onChange={(e) => setUser({ ...User, name: e.target.value })}
           />
         </div>
         <div className="field">
-          <label>Customer's Email</label>
+          <label> Cutomer's Email</label>
           <input
             type="text"
-            name="email"
+            name="Email"
             placeholder="Email"
-            value={this.state.email}
-            onChange={(e) => this.setState({ email: e.target.value })}
+            value={User.email}
+            onChange={(e) => setUser({ ...User, email: e.target.value })}
           />
         </div>
         <div className="field">
-          <label>Customer's Number</label>
+          <label> Cutomer's Number</label>
           <input
             type="text"
-            name="number"
+            name="Number"
             placeholder="Number"
-            value={this.state.number}
-            onChange={(e) => this.setState({ number: e.target.value })}
+            value={User.number}
+            onChange={(e) => setUser({ ...User, number: e.target.value })}
           />
-         
         </div>
-        <button className="ui button red"> Add</button>
+        <button className="ui button blue">Add</button>
       </form>
     </div>
   );
-};
 }
+
 export default AddContact;

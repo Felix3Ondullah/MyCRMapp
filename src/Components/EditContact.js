@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import {useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// HERE ABOVE useHistory IS REPLACED WITH useNavigate
+// Hidtory replaced by navigate
 
 function EditContact(props) {
   const navigate = useNavigate();
   let location = useLocation();
-  const { id, name, email } = location.state.contact;
-  const [User, setUser] = useState({ id, name, email, name });
+  const { id, name, email, number } = location.state.contact;
+  const [User, setUser] = useState({ id, name, email, number });
 
   let update = (e) => {
     e.preventDefault();
@@ -15,9 +15,8 @@ function EditContact(props) {
       alert("All fields are mandatory!!!");
       return;
     }
-    // THIS IS USED TO SHOW THE LIST DATA ON THE APP.JS FILE
+   
     props.updateContactHandler(User);
-    // THIS IS USED FOR WHEN THE ADD BUTTON IS PRESSED THE INPUT FILED AGAIN GETS EMPTY
     setUser({ name: "", email: "", number: "" });
     //console.log(props);
     navigate("/");
@@ -57,7 +56,7 @@ function EditContact(props) {
             onChange={(e) => setUser({ ...User, number: e.target.value })}
           />
         </div>
-        <button className="ui orange button">Update</button>
+        <button className="ui green button">Update</button>
       </form>
     </div>
   );

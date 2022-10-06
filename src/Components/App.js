@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { nanoid } from "nanoid";
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import "./App.css";
+import { nanoid } from "nanoid";
 import Header from "./Header";
-import ContactList from "./ContactList";
 import AddContact from "./AddContact";
+import ContactList from "./ContactList";
 import api from "../api/contacts";
+import EditContact from "./EditContact";
 
-const App = () => {
+function App() {
+
+  
   const LOCAL_STORAGE_KEY = "contacts";
   const [contacts, setContacts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  //retrieve contacts
-  const retrieveContacts = async () => {
-    const response = await api.get("/contacts");
-    return response.data;
-  };
+  const [SearchTerm, setSearchTerm] = useState("");
+  const [SearchResults, setSearchResults] = useState([]);
 
   const addContactHandler = async (contact) => {
     console.log(contact);
@@ -23,35 +22,51 @@ const App = () => {
       id: nanoid(),
       ...contact,
     };
-
-    const response = await api.post("./contacts", request);
-    console.log(response);
+    const response = await api.post("/contacts", request);
     setContacts([...contacts, response.data]);
   };
 
-  // const updateContactHandler =() => {};
+  //updating contacts
+  const updateContactHandler = async (contact) => {
+    const response = await api.put(`/contacts/${contact.id}`, contact);
+    // eslint-disable-next-line 
+    const { id, name, email, number } = response.data;
+    setContacts(
+      contacts.map((contact) => {
+        return contact.id === id ? { ...response.data } : contact;
+      })
+    );
+  };
 
+  //deleting contacts
   const removeContactHandler = async (id) => {
     await api.delete(`/contacts/${id}`);
     const newContactList = contacts.filter((contact) => {
       return contact.id !== id;
     });
+
     setContacts(newContactList);
   };
 
-  const searchHandler = (searchTerm) => {
-    // console.log(searchTerm)
-    setSearchTerm(searchTerm);
-    if (searchTerm !== "") {
+  // retriveing contacts
+  const retriveContacts = async () => {
+    const response = await api.get("/contacts");
+    return response.data;
+  };
+
+  // searching contacts
+  const searchHandler = (SearchTerm) => {
+    //console.log(SearchTerm);
+    setSearchTerm(SearchTerm);
+    if (SearchTerm !== "") {
       const newContactList = contacts.filter((contact) => {
-       return Object.values(contact)
+        return Object.values(contact)
           .join(" ")
           .toLowerCase()
-          .includes(searchTerm.toLowerCase());
+          .includes(SearchTerm.toLowerCase());
       });
       setSearchResults(newContactList);
-    }
-    else {
+    } else {
       setSearchResults(contacts);
     }
   };
@@ -60,30 +75,51 @@ const App = () => {
     // const retriveContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     // if (retriveContacts) setContacts(retriveContacts);
     const getAllContacts = async () => {
-      const allContacts = await retrieveContacts();
-      console.log(allContacts);
+      const allContacts = await retriveContacts();
       if (allContacts) setContacts(allContacts);
     };
     getAllContacts();
-    console.log(getAllContacts);
   }, []);
 
+  // FOR STORING THE DATA
   useEffect(() => {
-    // localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
   }, [contacts]);
 
   return (
     <div className="ui container">
-      <Header />
-      <AddContact addContactHandler={addContactHandler} />
-      <ContactList
-        contacts={ searchTerm.length <1 ? contacts : searchResults }
-        getContactId={removeContactHandler}
-        term={searchTerm}
-        searchKeyword={searchHandler}
-      />
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ContactList
+                contacts={SearchTerm.length < 1 ? contacts : SearchResults}
+                getContactId={removeContactHandler}
+                term={SearchTerm}
+                searchKeyword={searchHandler}
+              />
+            }
+            //render={(props)=><ContactList contacts={contacts} getContactId={removeContactHandler} {...props} />}
+          />
+          <Route
+            path="/add"
+            element={<AddContact addContactHandler={addContactHandler} />}
+            //render={(props)=><AddContact {...props} addContactHandler={addContactHandler}/>}
+          />
+          <Route
+            path="/edit"
+            element={
+              <EditContact updateContactHandler={updateContactHandler} /> }
+          />
+        </Routes>
+        {/* <AddContact addContactHandler={addContactHandler}/> */}
+        {/*Here in contact list props are used to get the values in the above contact array*/}
+        {/* <ContactList contacts={contacts} getContactId={removeContactHandler}/> */}
+      </Router>
     </div>
   );
-};
+}
 
 export default App;
