@@ -21,7 +21,7 @@ function AddContact(props) {
 
   return (
     <div className="ui main">
-      <h2>Add Contact</h2>
+      <h3>Add Contact</h3>
       <form className="ui form" onSubmit={add}>
         <div className="field">
           <label>Customer's Name</label>
