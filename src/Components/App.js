@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { nanoid } from "nanoid";
 import Header from "./Header";
@@ -9,8 +9,6 @@ import api from "../api/contacts";
 import EditContact from "./EditContact";
 
 function App() {
-
-  
   const LOCAL_STORAGE_KEY = "contacts";
   const [contacts, setContacts] = useState([]);
   const [SearchTerm, setSearchTerm] = useState("");
@@ -29,8 +27,8 @@ function App() {
   //updating contacts
   const updateContactHandler = async (contact) => {
     const response = await api.put(`/contacts/${contact.id}`, contact);
-   
-    const { id, } = response.data;
+
+    const { id } = response.data;
     setContacts(
       contacts.map((contact) => {
         return contact.id === id ? { ...response.data } : contact;
@@ -111,7 +109,8 @@ function App() {
           <Route
             path="/edit"
             element={
-              <EditContact updateContactHandler={updateContactHandler} /> }
+              <EditContact updateContactHandler={updateContactHandler} />
+            }
           />
         </Routes>
         {/* <AddContact addContactHandler={addContactHandler}/> */}
