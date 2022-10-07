@@ -9,7 +9,8 @@ This app will enable the business to input customer details and store them.  It 
 This app will will be created React Js. I will import semantic UI in the html file in our app. This will be used for styling the app. I will create a db.json where I will put my resources that will act as my server. I will requets this data/resources using axios. This will return the data of the format JSON.
 
 # Project live link
-
+Backend link: https://ondullah-crm-api.herokuapp.com/contacts
+Frontend Link: https://spiffy-travesseiro-5608ce.netlify.app/
 
 # MIT License
 Copyright (c) [2022] [Okoth Ondullah Felix]
