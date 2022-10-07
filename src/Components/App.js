@@ -29,8 +29,8 @@ function App() {
   //updating contacts
   const updateContactHandler = async (contact) => {
     const response = await api.put(`/contacts/${contact.id}`, contact);
-    // eslint-disable-next-line 
-    const { id, name, email, number } = response.data;
+   
+    const { id, } = response.data;
     setContacts(
       contacts.map((contact) => {
         return contact.id === id ? { ...response.data } : contact;
@@ -81,7 +81,7 @@ function App() {
     getAllContacts();
   }, []);
 
-  // FOR STORING THE DATA
+  // data storage
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
   }, [contacts]);
