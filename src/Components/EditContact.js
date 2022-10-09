@@ -52,7 +52,7 @@ function EditContact(props) {
             type="text"
             name="Number"
             placeholder="Number"
-            value={User.email}
+            value={User.number}
             onChange={(e) => setUser({ ...User, number: e.target.value })}
           />
         </div>
